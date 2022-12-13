@@ -9,3 +9,17 @@
     font-family: "Source Sans Pro", sans-serif;
   }
 }
+
+@layer components {
+  .headerLink {
+    @apply cursor-pointer opacity-75 transition hover:opacity-100;
+  }
+
+  .headerIcon {
+    @apply cursor-pointer h-6 w-6 opacity-75 transition hover:opacity-100;
+  }
+
+  .link {
+    @apply relative cursor-pointer text-lg font-medium;
+  }
+}
