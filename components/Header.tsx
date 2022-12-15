@@ -11,7 +11,7 @@ const Header = () => {
   const session = false;
 
   return (
-    <header className="fixed top-0 z-50 flex w-full items-center justify-between bg-[#e7ecee]/75 backdrop-blur-sm py-2 px-4">
+    <header className="fixed top-0 z-50 flex w-full items-center justify-between bg-[#e7ecee]/80 backdrop-blur-sm py-2 px-4">
       <div className="flex items-center justify-center md:w-1/5">
         <Link href="/">
           <div className="relative w-5 h-10 transition opacity-75 cursor-pointer hover:opacity-100">

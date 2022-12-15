@@ -5,13 +5,21 @@ import Header from "../components/Header";
 import Hero from "../components/Hero";
 import Products from "../components/Products";
 import { fetchCategories } from "../utils/fetchCategories";
+import { fetchProducts } from "../utils/fetchProducts";
 
 interface Props {
   categories: Category[];
+  products: Product[];
 }
 
-const Home: NextPage<Props> = ({ categories }) => {
-  console.log(categories);
+const Home: NextPage<Props> = ({ categories, products }) => {
+  const showProducts = (categoryId: number) => {
+    const [category] = categories.filter(
+      (category) => category.index === categoryId
+    );
+    return products.filter((product) => product.category._ref === category._id);
+  };
+
   return (
     <div className="">
       <Head>
@@ -35,7 +43,7 @@ const Home: NextPage<Props> = ({ categories }) => {
               {categories
                 .sort(
                   (a, b) => a.index - b.index
-                ) /* sorting the tabs based on index */
+                ) /* sorting the tabs based on ascending index */
                 .map((category) => (
                   <Tab
                     key={category._id}
@@ -51,11 +59,22 @@ const Home: NextPage<Props> = ({ categories }) => {
                   </Tab>
                 ))}
             </Tab.List>
-            <Tab.Panels>
-              <Tab.Panel></Tab.Panel>
-              <Tab.Panel></Tab.Panel>
-              <Tab.Panel></Tab.Panel>
-              <Tab.Panel></Tab.Panel>
+            <Tab.Panels className="mx-auto max-w-fit">
+              <Tab.Panel>
+                <Products products={showProducts(1)} />
+              </Tab.Panel>
+              <Tab.Panel>
+                <Products products={showProducts(2)} />
+              </Tab.Panel>
+              <Tab.Panel>
+                <Products products={showProducts(3)} />
+              </Tab.Panel>
+              <Tab.Panel>
+                <Products products={showProducts(4)} />
+              </Tab.Panel>
+              <Tab.Panel>
+                <Products products={showProducts(5)} />
+              </Tab.Panel>
             </Tab.Panels>
           </Tab.Group>
         </div>
@@ -68,6 +87,7 @@ export default Home;
 
 export const getServerSideProps: GetServerSideProps<Props> = async () => {
   const categories = await fetchCategories();
+  const products = await fetchProducts();
 
-  return { props: { categories } };
+  return { props: { categories, products } };
 };
