@@ -51,7 +51,7 @@ const Home: NextPage<Props> = ({ categories, products }) => {
                   <Tab
                     key={category._id}
                     className={({ selected }) =>
-                      `whitespace-nowrap rounded-t-lg py-3 px-5 text-sm font-light outline-none md:py-4 md:px-6 md:text-base ${
+                      `whitespace-nowrap rounded-t-lg py-3 transition duration-300 ease-in-out px-5 text-sm font-light outline-none md:py-4 md:px-6 md:text-base ${
                         selected
                           ? "borderGradient bg-[#35383C] text-white"
                           : "border-b-2 border-[#35383C] text-[#747474]"
