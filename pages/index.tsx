@@ -1,6 +1,7 @@
 import { Tab } from "@headlessui/react";
 import type { GetServerSideProps, NextPage } from "next";
 import Head from "next/head";
+import Basket from "../components/Basket";
 import Header from "../components/Header";
 import Hero from "../components/Hero";
 import Products from "../components/Products";
@@ -29,13 +30,15 @@ const Home: NextPage<Props> = ({ categories, products }) => {
 
       <Header />
 
+      <Basket />
+
       <main className="relative h-[200vh] bg-[#e7ecee]">
         <Hero />
       </main>
       <section className="relative z-40 -mt-[100vh] min-h-screen bg-[#1b1b1b]">
         <div className="py-16 space-y-10">
           <h1 className="text-4xl font-medium tracking-wide text-center text-white md:text-5xl">
-            New Promos
+            Latest Products
           </h1>
 
           <Tab.Group>
