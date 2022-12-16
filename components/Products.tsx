@@ -2,6 +2,7 @@ import { ShoppingBagIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import { toast } from "react-hot-toast";
 import { useDispatch } from "react-redux";
+import { categoryId } from "../constants/productCategory";
 import { addToBasket } from "../redux/basketSlice";
 import { urlFor } from "../sanity";
 
@@ -27,8 +28,8 @@ const Products = ({ products }: Props) => {
           key={product._id}
           className={`flex flex-col w-[320px] h-[320px] select-none rounded-xl duration-300 ease-in-out cursor-pointer transition-all p-4 lg:h-[350px] lg:w-[350px] lg:py-5 hover:scale-105 ${
             // background colour based on iPhone/iPad or others
-            product.category._ref === "563f98c3-a00c-45b4-adc7-8b4ccc5adf0a" ||
-            product.category._ref === "8f6d33c3-3c6f-44c1-aa98-13cc0f4a823d"
+            product.category._ref === categoryId.iPad ||
+            product.category._ref === categoryId.iPhone
               ? "bg-[#F5F5F7]"
               : "bg-[#fff]"
           }`}

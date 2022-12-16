@@ -15,7 +15,7 @@ interface Category {
 interface Image {
   _key: string;
   _type: "image";
-  asset: { _ref: string; _type: "reference" };
+  asset: { _ref: string; _type: "reference"; url: string };
 }
 
 interface Product {

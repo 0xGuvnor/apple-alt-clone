@@ -39,9 +39,11 @@ const Header = () => {
         <MagnifyingGlassIcon className="headerIcon" />
         <Link href="/checkout">
           <div className="relative cursor-pointer">
-            <div className="absolute text-[10px] text-white -right-1 -top-1 z-50 flex h-4 w-4 items-center justify-center rounded-full bg-gradient-to-r from-pink-500 to-violet-500">
-              {itemsInBasket.length}
-            </div>
+            {!!itemsInBasket.length && (
+              <div className="absolute text-[10px] text-white -right-1 -top-1 z-50 flex h-4 w-4 items-center justify-center rounded-full bg-gradient-to-r from-pink-500 to-violet-500">
+                {itemsInBasket.length}
+              </div>
+            )}
             <ShoppingBagIcon className="headerIcon" />
           </div>
         </Link>
