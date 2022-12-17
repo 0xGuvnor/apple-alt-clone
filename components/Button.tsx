@@ -23,8 +23,8 @@ const Button = ({
       onClick={onClick}
       className={`relative inline-flex items-center justify-center ${padding} px-5 py-2 ${
         width ? width : "w-auto"
-      } ${
-        height ? height : "h-auto"
+      } ${height ? height : "h-auto"} ${
+        loading ? "cursor-wait" : "cursor-pointer"
       } overflow-hidden font-medium text-indigo-600 transition duration-300 ease-out rounded shadow-xl group`}
     >
       <span className="absolute inset-0 w-full h-full bg-gradient-to-br from-pink-500 via-purple-500 to-sky-500"></span>

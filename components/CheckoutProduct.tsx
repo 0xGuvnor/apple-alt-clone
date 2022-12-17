@@ -25,7 +25,7 @@ const CheckoutProduct = ({ items, id }: Props) => {
 
   return (
     <div
-      className={`flex flex-col pb-5 border-b border-gray-300 gap-x-4 lg:flex-row lg:items-center px-5 md:px-8 first:rounded-t-xl last:rounded-b-xl ${
+      className={`flex flex-col py-4 border-b border-gray-300 gap-x-4 lg:flex-row lg:items-center px-5 md:px-8 first:rounded-t-xl last:rounded-b-xl ${
         items[0].category._ref === categoryId.iPad ||
         items[0].category._ref === categoryId.iPhone
           ? "bg-[#F5F5F7]"
