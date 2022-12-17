@@ -1,4 +1,9 @@
-import { CheckIcon, ShoppingBagIcon } from "@heroicons/react/24/outline";
+import {
+  CheckIcon,
+  ChevronDownIcon,
+  ChevronUpIcon,
+  ShoppingBagIcon,
+} from "@heroicons/react/24/outline";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
@@ -6,13 +11,31 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import Button from "../components/Button";
+import Currency from "react-currency-formatter";
+import { GetServerSideProps } from "next";
+import { fetchLineItems } from "../utils/fetchLineItems";
 
-const Success = () => {
+interface Props {
+  products: StripeProduct[];
+}
+
+const Success = ({ products }: Props) => {
   const router = useRouter();
   const { session_id } = router.query;
   const [isMounted, setIsMounted] = useState(false);
+  const [showOrderSummary, setShowOrderSummary] = useState(false);
+  const subtotal = products.reduce(
+    (total, product) => total + product.price.unit_amount / 100,
+    0
+  );
 
+  // showOrderSummary always true for desktop, but only conditionally true for mobile
   const isTabletOrMobile = useMediaQuery({ maxWidth: 1024 });
+  const showOrderSummaryCondition = isTabletOrMobile ? showOrderSummary : true;
+
+  const handleShowOrderSummary = () => {
+    setShowOrderSummary(!showOrderSummary);
+  };
 
   useEffect(() => {
     setIsMounted(true);
@@ -99,15 +122,89 @@ const Success = () => {
         </section>
 
         {isMounted && (
-          <section>
-            <div>
-              <div>
-                <button>
+          <section className="overflow-y-scroll border-l border-gray-300 border-y bg-[#fafafa] lg:order-2 lg:col-span-4 lg:h-screen lg:border-y-0">
+            <div
+              className={`w-full border-gray-300 text-sm lg:hidden ${
+                showOrderSummaryCondition && "border-b"
+              }`}
+            >
+              <div className="flex items-center justify-between max-w-xl px-4 py-6 mx-auto">
+                <button
+                  onClick={handleShowOrderSummary}
+                  className="flex items-center space-x-2"
+                >
                   <ShoppingBagIcon className="w-6 h-6" />
                   <p>Show order summary</p>
+                  {showOrderSummaryCondition ? (
+                    <ChevronUpIcon className="w-4 h-4" />
+                  ) : (
+                    <ChevronDownIcon className="w-4 h-4" />
+                  )}
                 </button>
+                <p className="text-xl font-medium text-black">
+                  <Currency quantity={subtotal} />
+                </p>
               </div>
             </div>
+            {showOrderSummaryCondition && (
+              <div className="max-w-xl p-4 mx-auto divide-y divide-gray-300 lg:mx-0 lg:max-w-lg lg:px-10 lg:py-16">
+                <div className="pb-4 space-y-2">
+                  {products.map((product) => (
+                    <div
+                      key={product.id}
+                      className="flex items-center space-x-4 text-sm font-medium"
+                    >
+                      <div className="flex relative items-center justify-center w-16 h-16 border border-gray-300 bg-[#F1F1F1] text-xs text-white rounded-md">
+                        <div className="relative rounded-md h-7 w-7">
+                          <Image
+                            src="https://rb.gy/vsvv2o"
+                            alt="Apple Logo"
+                            fill
+                            className="object-contain"
+                          />
+                        </div>
+                        <div className="absolute flex items-center justify-center w-5 h-5 bg-gray-400 rounded-full -right-2 -top-2">
+                          {product.quantity}
+                        </div>
+                      </div>
+                      <p className="flex-1">{product.description}</p>
+                      <p>
+                        <Currency quantity={product.price.unit_amount / 100} />
+                      </p>
+                    </div>
+                  ))}
+                </div>
+                <div className="py-4 space-y-1">
+                  <div className="flex justify-between text-sm">
+                    <p className="text-gray-500">Subtotal</p>
+                    <p className="font-medium">
+                      <Currency quantity={subtotal} />
+                    </p>
+                  </div>
+                  <div className="flex justify-between text-sm">
+                    <p className="text-gray-500">Discount</p>
+                    <p className="text-gray-500">
+                      <Currency quantity={0} />
+                    </p>
+                  </div>
+                  <div className="flex justify-between text-sm">
+                    <p className="text-gray-500">Shipping</p>
+                    <p className="font-medium">
+                      <Currency quantity={0} />
+                    </p>
+                  </div>
+                </div>
+                <div className="flex justify-between pt-4">
+                  <p>Total</p>
+                  <p className="flex items-center text-xs text-gray-500 gap-x-2">
+                    SGD
+                    <span className="text-xl font-medium text-black">
+                      <Currency quantity={subtotal} />
+                    </span>
+                  </p>
+                </div>
+              </div>
+            )}
           </section>
         )}
       </main>
@@ -115,3 +212,12 @@ const Success = () => {
   );
 };
 export default Success;
+
+export const getServerSideProps: GetServerSideProps<Props> = async ({
+  query,
+}) => {
+  const sessionId = query.session_id as string;
+  const products = await fetchLineItems(sessionId);
+
+  return { props: { products } };
+};
