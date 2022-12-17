@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { categoryId } from "../constants/productCategory";
 import { addToBasket } from "../redux/basketSlice";
 import { urlFor } from "../sanity";
+import Currency from "react-currency-formatter";
 
 interface Props {
   products: Product[];
@@ -54,9 +55,7 @@ const Products = ({ products }: Props) => {
             <div className="text-lg lg:text-xl">
               <p className="font-semibold">{product.title}</p>
               <p className="font-light">
-                $
-                {product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-                {/* regex to add thousands separator */}
+                <Currency quantity={product.price} />
               </p>
             </div>
 

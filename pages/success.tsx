@@ -14,6 +14,7 @@ import Button from "../components/Button";
 import Currency from "react-currency-formatter";
 import { GetServerSideProps } from "next";
 import { fetchLineItems } from "../utils/fetchLineItems";
+import { useSession } from "next-auth/react";
 
 interface Props {
   products: StripeProduct[];
@@ -28,6 +29,7 @@ const Success = ({ products }: Props) => {
     (total, product) => total + product.price.unit_amount / 100,
     0
   );
+  const { data: session } = useSession();
 
   // showOrderSummary always true for desktop, but only conditionally true for mobile
   const isTabletOrMobile = useMediaQuery({ maxWidth: 1024 });
@@ -61,8 +63,8 @@ const Success = ({ products }: Props) => {
         </Link>
       </header>
 
-      <main>
-        <section className="order-2 max-w-xl pb-12 mx-auto lg:mx-0 lg:max-w-none lg:pr-16 lg:pt-16 xl:pl-16 2xl:pl-44">
+      <main className="grid grid-cols-1 lg:grid-cols-9">
+        <section className="order-2 max-w-xl pb-12 mx-auto lg:col-span-5 lg:mx-0 lg:max-w-none lg:pr-16 lg:pt-16 xl:pl-16 2xl:pl-44">
           <Link href="/">
             <div className="relative hidden w-12 h-24 transition cursor-pointer ml-14 lg:inline-flex">
               <Image
@@ -74,8 +76,8 @@ const Success = ({ products }: Props) => {
             </div>
           </Link>
 
-          <div className="flex my-8 ml-4 space-x-4 lg:ml-14 xl:ml-0">
-            <div className="flex items-center justify-center border-2 border-black rounded-full h-11 w-11">
+          <div className="flex my-8 ml-4 space-x-4 lg:ml-14">
+            <div className="flex items-center justify-center text-green-500 border-2 border-green-500 rounded-full h-11 w-11">
               <CheckIcon className="w-8 h-8" />
             </div>
             <div>
@@ -83,8 +85,8 @@ const Success = ({ products }: Props) => {
                 Order #{session_id?.slice(-5)}
               </p>
               <h4 className="text-lg">
-                Thank you
-                {/* {session ? session.user.name.split(' ')[0] : "Guest"} */}
+                Thank you{" "}
+                {session ? session.user?.name!.split(" ")[0] : "Guest"}
               </h4>
             </div>
           </div>
@@ -108,7 +110,7 @@ const Success = ({ products }: Props) => {
               You'll get shipping and delivery updates by email.
             </p>
           </div>
-          <div>
+          <div className="flex flex-col items-center justify-between mx-4 text-sm lg:ml-14 lg:flex-row">
             <p className="hidden lg:inline">Need help? Contact us.</p>
             {isMounted && (
               <Button
