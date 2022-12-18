@@ -3,28 +3,28 @@ import Button from "./Button";
 
 const Hero = () => {
   return (
-    <section className="sticky inset-x-0 top-0 flex flex-col md:flex-row mx-auto h-screen max-w-[1350px] items-center md:justify-between px-8 pt-16 space-y-8 md:pt-0 md:space-y-0">
-      <div className="space-y-4 md:space-y-8">
-        <h1 className="space-y-3 text-5xl font-semibold tracking-wide lg:text-6xl xl:text-7xl">
-          <div className="text-transparent bg-gradient-to-r from-pink-500 to-violet-500 bg-clip-text">
-            Powered
+    <section className="sticky top-0 flex mx-auto h-screen max-w-[1350px] items-start justify-center px-8 pt-[140px] sm:pt-[68px]">
+      <div className="z-50 flex flex-col items-center justify-center space-y-4 md:space-y-6">
+        <h1 className="flex flex-col items-center justify-center space-y-2 text-5xl font-semibold tracking-wide lg:text-6xl xl:text-7xl">
+          <div className="text-transparent bg-gradient-to-br from-pink-500 via-purple-500 to-sky-500 bg-clip-text">
+            iPhone 14
           </div>
-          <div>By Intellect</div>
-          <div>Driven By Values</div>
+          <div className="text-3xl font-medium">Big and bigger.</div>
         </h1>
 
         <div className="space-x-8">
           <Button title="Buy Now" />
-          <a className="link">Learn More</a>
+          <a className="text-blue-500 link">Learn More</a>
         </div>
       </div>
 
-      <div className="relative w-screen h-96 sm:h-[450px] sm:w-[450px] transition-all duration-500 lg:h-[650px] lg:w-[600px]">
+      <div className="absolute bottom-0 w-full h-[60vh] sm:h-[80vh] lg:h-[78vh] xl:h-[72vh] self-end transition duration-300 overflow-hidden">
         <Image
-          src="/iphone.png"
-          alt="Hero Shot of an iPhone"
+          src="/iphone14_hero.jpg"
+          alt="Hero Shot of iPhone 14"
+          quality={100}
           fill
-          className="object-contain"
+          className="object-cover"
         />
       </div>
     </section>

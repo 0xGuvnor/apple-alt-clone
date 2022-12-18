@@ -35,7 +35,7 @@ const Home: NextPage<Props> = ({ categories, products }) => {
 
       <Basket />
 
-      <main className="relative h-[200vh] bg-[#e7ecee]">
+      <main className="relative h-[200vh]">
         <Hero />
       </main>
       <section className="relative z-40 -mt-[100vh] min-h-screen bg-[#1b1b1b]">
