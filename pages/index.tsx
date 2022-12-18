@@ -4,6 +4,7 @@ import { Session } from "next-auth";
 import { getSession } from "next-auth/react";
 import Head from "next/head";
 import Basket from "../components/Basket";
+import Footer from "../components/Footer";
 import Header from "../components/Header";
 import Hero from "../components/Hero";
 import Products from "../components/Products";
@@ -85,6 +86,8 @@ const Home: NextPage<Props> = ({ categories, products }) => {
           </Tab.Group>
         </div>
       </section>
+
+      <Footer />
     </div>
   );
 };

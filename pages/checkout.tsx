@@ -91,7 +91,7 @@ const Checkout: NextPage = () => {
               ))}
             </div>
 
-            <div className="max-w-3xl my-12 mt-6 ml-auto">
+            <div className="max-w-5xl my-12 mt-6 ml-auto">
               <div className="divide-y divide-gray-300">
                 <div className="pb-4">
                   <div className="flex justify-between">
