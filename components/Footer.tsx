@@ -1,6 +1,11 @@
+import { motion } from "framer-motion";
+
 const Footer = () => {
   return (
-    <div className="grid grid-cols-1 px-2 py-4 text-sm sm:px-16 lg:divide-none lg:grid-cols-3">
+    <motion.div
+      layout
+      className="grid grid-cols-1 px-2 py-4 text-sm sm:px-16 lg:divide-none lg:grid-cols-3"
+    >
       <div className="flex flex-wrap items-center justify-center py-2 divide-x divide-gray-400 lg:col-span-2 xl:col-span-1 xl:col-start-2">
         <div className="footerLink">Privacy Policy</div>
         <div className="footerLink">Terms of Use</div>
@@ -16,7 +21,7 @@ const Footer = () => {
       >
         👨‍💻 Made by 0xGuvnor
       </a>
-    </div>
+    </motion.div>
   );
 };
 export default Footer;

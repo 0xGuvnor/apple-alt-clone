@@ -10,6 +10,14 @@ import Hero from "../components/Hero";
 import Products from "../components/Products";
 import { fetchCategories } from "../utils/fetchCategories";
 import { fetchProducts } from "../utils/fetchProducts";
+import {
+  AnimatePresence,
+  motion,
+  useMotionValue,
+  useScroll,
+  useVelocity,
+} from "framer-motion";
+import { useEffect, useState } from "react";
 
 interface Props {
   categories: Category[];
@@ -18,6 +26,17 @@ interface Props {
 }
 
 const Home: NextPage<Props> = ({ categories, products }) => {
+  const [show, setShow] = useState(true);
+  const { scrollY, scrollYProgress } = useScroll();
+  const [velo, setVelo] = useState(0);
+  const y = useMotionValue(0);
+  const yVelo = useVelocity(y);
+
+  useEffect(() => {
+    console.log(1, scrollY);
+    console.log(2, scrollYProgress);
+  }, [scrollY, scrollYProgress]);
+
   const showProducts = (categoryId: number) => {
     const [category] = categories.filter(
       (category) => category.index === categoryId
@@ -26,13 +45,27 @@ const Home: NextPage<Props> = ({ categories, products }) => {
   };
 
   return (
-    <div className="">
+    <div>
       <Head>
         <title>Apple</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <Header />
+      {/* <AnimatePresence>
+        {show && (
+          <motion.div
+            initial={{ y: "-100vh", opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: "100vh", opacity: 0 }}
+            transition={{ type: "spring", damping: 8, stiffness: 400 }}
+            onClick={() => setShow(false)}
+            className={`h-64 w-64 fixed right-0 z-50 bg-sky-500 inset-y-60 flex items-center justify-center`}
+          >
+            {velo}
+          </motion.div>
+        )}
+      </AnimatePresence> */}
 
       <Basket />
 
@@ -55,14 +88,16 @@ const Home: NextPage<Props> = ({ categories, products }) => {
                   <Tab
                     key={category._id}
                     className={({ selected }) =>
-                      `whitespace-nowrap rounded-t-lg py-3 transition duration-300 ease-in-out px-5 text-sm font-light outline-none md:py-4 md:px-6 md:text-base ${
+                      `whitespace-nowrap rounded-t-lg py-3 px-5 text-sm font-light outline-none md:py-4 md:px-6 md:text-base ${
                         selected
                           ? "borderGradient bg-[#35383C] text-white"
                           : "border-b-2 border-[#35383C] text-[#747474]"
                       }`
                     }
                   >
+                    {/* <motion.div layoutId="underline"> */}
                     {category.title}
+                    {/* </motion.div> */}
                   </Tab>
                 ))}
             </Tab.List>
