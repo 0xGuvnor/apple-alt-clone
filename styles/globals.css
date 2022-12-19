@@ -30,4 +30,8 @@
       no-repeat;
     background-size: 100% 2px;
   }
+
+  .footerLink {
+    @apply px-2 cursor-pointer hover:underline;
+  }
 }
