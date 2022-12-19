@@ -6,6 +6,7 @@ import { categoryId } from "../constants/productCategory";
 import { addToBasket } from "../redux/basketSlice";
 import { urlFor } from "../sanity";
 import Currency from "react-currency-formatter";
+import { motion, useScroll } from "framer-motion";
 
 interface Props {
   products: Product[];
@@ -13,6 +14,7 @@ interface Props {
 
 const Products = ({ products }: Props) => {
   const dispatch = useDispatch();
+  const {} = useScroll({});
 
   const addItemToBasket = (product: Product) => {
     dispatch(addToBasket(product));
@@ -25,8 +27,13 @@ const Products = ({ products }: Props) => {
   return (
     <div className="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3">
       {products.map((product) => (
-        <div
+        <motion.div
           key={product._id}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          exit={{ y: "100vh" }}
+          transition={{ duration: 1, delay: 0.2 }}
+          viewport={{ once: true }}
           className={`flex flex-col w-[320px] h-[320px] select-none rounded-xl duration-300 ease-in-out cursor-pointer transition-all p-4 lg:h-[350px] lg:w-[350px] lg:py-5 hover:scale-105 ${
             // background colour based on iPhone/iPad or others
             product.category._ref === categoryId.iPad ||
@@ -66,7 +73,7 @@ const Products = ({ products }: Props) => {
               <ShoppingBagIcon className="w-6 h-6 text-white" />
             </div>
           </div>
-        </div>
+        </motion.div>
       ))}
     </div>
   );
