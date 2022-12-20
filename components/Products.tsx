@@ -31,7 +31,6 @@ const Products = ({ products }: Props) => {
           key={product._id}
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          exit={{ y: "100vh" }}
           transition={{ duration: 1, delay: 0.2 }}
           viewport={{ once: true }}
           className={`flex flex-col w-[320px] h-[320px] select-none rounded-xl duration-300 ease-in-out cursor-pointer transition-all p-4 lg:h-[350px] lg:w-[350px] lg:py-5 hover:scale-105 ${

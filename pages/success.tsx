@@ -4,7 +4,6 @@ import {
   ChevronUpIcon,
   ShoppingBagIcon,
 } from "@heroicons/react/24/outline";
-import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -15,6 +14,7 @@ import Currency from "react-currency-formatter";
 import { GetServerSideProps } from "next";
 import { fetchLineItems } from "../utils/fetchLineItems";
 import { useSession } from "next-auth/react";
+import Layout from "../components/Layout";
 
 interface Props {
   products: StripeProduct[];
@@ -44,14 +44,9 @@ const Success = ({ products }: Props) => {
   }, []);
 
   return (
-    <div>
-      <Head>
-        <title>Thank you! - Apple</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
+    <Layout title="Thank you! - Apple">
       <header className="max-w-xl mx-auto">
-        <Link href="/">
+        <Link href="/" scroll={false}>
           <div className="relative w-8 h-16 ml-4 cursor-pointer lg:hidden">
             <Image
               src="https://rb.gy/vsvv2o"
@@ -65,7 +60,7 @@ const Success = ({ products }: Props) => {
 
       <main className="grid grid-cols-1 lg:grid-cols-9">
         <section className="order-2 max-w-xl pb-12 mx-auto lg:col-span-5 lg:mx-0 lg:max-w-none lg:pr-16 lg:pt-16 xl:pl-16 2xl:pl-44">
-          <Link href="/">
+          <Link href="/" scroll={false}>
             <div className="relative hidden w-12 h-24 transition cursor-pointer ml-14 lg:inline-flex">
               <Image
                 src="https://rb.gy/vsvv2o"
@@ -210,7 +205,7 @@ const Success = ({ products }: Props) => {
           </section>
         )}
       </main>
-    </div>
+    </Layout>
   );
 };
 export default Success;

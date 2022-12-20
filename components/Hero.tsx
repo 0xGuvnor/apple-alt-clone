@@ -6,9 +6,10 @@ const Hero = () => {
   return (
     <section className="sticky top-0 flex flex-col mx-auto h-screen max-w-[1350px] items-center justify-between px-8 pt-[140px] sm:pt-[68px]">
       <motion.div
-        animate={{ y: 0, scale: 1 }}
         initial={{ y: -300, scale: 0 }}
-        transition={{ duration: 2, type: "tween" }}
+        animate={{ y: 0, scale: 1 }}
+        exit={{ y: -300, scale: 0, transition: { duration: 0.2 } }}
+        transition={{ duration: 1.5, type: "tween" }}
         className="z-50 flex flex-col items-center justify-center space-y-4 md:space-y-6"
       >
         <h1 className="flex flex-col items-center justify-center space-y-2 text-5xl font-semibold tracking-wide lg:text-6xl xl:text-7xl">
@@ -27,7 +28,8 @@ const Hero = () => {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 3, ease: "easeInOut" }}
+        exit={{ opacity: 0, transition: { duration: 0.2 } }}
+        transition={{ duration: 2, ease: "easeInOut" }}
         className="absolute bottom-0 inset-x-0 w-full h-[60vh] sm:h-[80vh] xl:h-[74vh] self-end transition duration-300"
       >
         <Image

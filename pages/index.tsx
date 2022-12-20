@@ -10,14 +10,6 @@ import Hero from "../components/Hero";
 import Products from "../components/Products";
 import { fetchCategories } from "../utils/fetchCategories";
 import { fetchProducts } from "../utils/fetchProducts";
-import {
-  AnimatePresence,
-  motion,
-  useMotionValue,
-  useScroll,
-  useVelocity,
-} from "framer-motion";
-import { useEffect, useState } from "react";
 
 interface Props {
   categories: Category[];
@@ -26,17 +18,6 @@ interface Props {
 }
 
 const Home: NextPage<Props> = ({ categories, products }) => {
-  const [show, setShow] = useState(true);
-  const { scrollY, scrollYProgress } = useScroll();
-  const [velo, setVelo] = useState(0);
-  const y = useMotionValue(0);
-  const yVelo = useVelocity(y);
-
-  useEffect(() => {
-    console.log(1, scrollY);
-    console.log(2, scrollYProgress);
-  }, [scrollY, scrollYProgress]);
-
   const showProducts = (categoryId: number) => {
     const [category] = categories.filter(
       (category) => category.index === categoryId
@@ -52,26 +33,13 @@ const Home: NextPage<Props> = ({ categories, products }) => {
       </Head>
 
       <Header />
-      {/* <AnimatePresence>
-        {show && (
-          <motion.div
-            initial={{ y: "-100vh", opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: "100vh", opacity: 0 }}
-            transition={{ type: "spring", damping: 8, stiffness: 400 }}
-            onClick={() => setShow(false)}
-            className={`h-64 w-64 fixed right-0 z-50 bg-sky-500 inset-y-60 flex items-center justify-center`}
-          >
-            {velo}
-          </motion.div>
-        )}
-      </AnimatePresence> */}
 
       <Basket />
 
       <main className="relative h-[200vh]">
         <Hero />
       </main>
+
       <section className="relative z-40 -mt-[100vh] min-h-screen bg-[#1b1b1b]">
         <div className="py-16 space-y-10">
           <h1 className="text-4xl font-medium tracking-wide text-center text-white md:text-5xl">
@@ -95,9 +63,7 @@ const Home: NextPage<Props> = ({ categories, products }) => {
                       }`
                     }
                   >
-                    {/* <motion.div layoutId="underline"> */}
                     {category.title}
-                    {/* </motion.div> */}
                   </Tab>
                 ))}
             </Tab.List>

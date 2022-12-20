@@ -17,7 +17,7 @@ const Header = () => {
   return (
     <header className="fixed top-0 z-50 flex w-full items-center justify-between bg-[#FAFAFA]/80 backdrop-blur-sm py-2 px-4">
       <div className="flex items-center justify-center md:w-1/5">
-        <Link href="/">
+        <Link href="/" scroll={false}>
           <div className="relative w-5 h-10 transition opacity-75 cursor-pointer hover:opacity-100">
             <Image
               src="https://rb.gy/vsvv2o"
@@ -38,7 +38,7 @@ const Header = () => {
 
       <div className="flex items-center justify-center gap-x-4 md:w-1/5">
         <MagnifyingGlassIcon className="headerIcon" />
-        <Link href="/checkout">
+        <Link href="/checkout" scroll={false}>
           <div className="relative cursor-pointer">
             {!!itemsInBasket.length && (
               <div className="absolute text-[10px] text-white -right-1 -top-1 z-50 flex h-4 w-4 items-center justify-center rounded-full bg-gradient-to-r from-pink-500 to-violet-500">

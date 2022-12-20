@@ -9,7 +9,7 @@ const Basket = () => {
   if (!itemsInBasket.length) return null;
 
   return (
-    <Link href="/checkout">
+    <Link href="/checkout" scroll={false}>
       <div className="fixed z-50 flex items-center justify-center w-16 h-16 rounded-full cursor-pointer backdrop-blur-sm bg-gray-300/80 group bottom-10 right-10">
         {!!itemsInBasket.length && (
           <span className="absolute z-50 flex items-center justify-center text-xs text-white rounded-full -right-1 -top-1 h-7 w-7 bg-gradient-to-br from-pink-500 via-purple-500 to-sky-500">
