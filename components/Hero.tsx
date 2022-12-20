@@ -8,7 +8,7 @@ const Hero = () => {
       <motion.div
         animate={{ y: 0, scale: 1 }}
         initial={{ y: -300, scale: 0 }}
-        transition={{ duration: 1.5, type: "tween" }}
+        transition={{ duration: 2, type: "tween" }}
         className="z-50 flex flex-col items-center justify-center space-y-4 md:space-y-6"
       >
         <h1 className="flex flex-col items-center justify-center space-y-2 text-5xl font-semibold tracking-wide lg:text-6xl xl:text-7xl">
