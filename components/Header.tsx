@@ -55,8 +55,8 @@ const Header = () => {
               "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y"
             }
             alt="Profile Image"
-            width={24}
             height={24}
+            width={24}
             onClick={() => signOut()}
             className="rounded-full cursor-pointer"
           />
