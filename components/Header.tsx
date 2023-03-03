@@ -21,8 +21,8 @@ const Header = () => {
           <div className="relative w-5 h-10 transition opacity-75 cursor-pointer hover:opacity-100">
             <Image
               src="/apple_logo.webp"
-              fill
               alt="Apple Logo"
+              fill
               className="object-contain"
             />
           </div>
