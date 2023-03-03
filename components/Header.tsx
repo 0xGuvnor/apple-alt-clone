@@ -20,7 +20,7 @@ const Header = () => {
         <Link href="/" scroll={false}>
           <div className="relative w-5 h-10 transition opacity-75 cursor-pointer hover:opacity-100">
             <Image
-              src="https://rb.gy/vsvv2o"
+              src="/apple_logo.webp"
               fill
               alt="Apple Logo"
               className="object-contain"
