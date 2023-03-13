@@ -49,7 +49,7 @@ const Success = ({ products }: Props) => {
         <Link href="/" scroll={false}>
           <div className="relative w-8 h-16 ml-4 cursor-pointer lg:hidden">
             <Image
-              src="https://rb.gy/vsvv2o"
+              src="/apple_logo.webp"
               alt="Apple Logo"
               fill
               className="object-contain"
@@ -63,7 +63,7 @@ const Success = ({ products }: Props) => {
           <Link href="/" scroll={false}>
             <div className="relative hidden w-12 h-24 transition cursor-pointer ml-14 lg:inline-flex">
               <Image
-                src="https://rb.gy/vsvv2o"
+                src="/apple_logo.webp"
                 alt="Apple Logo"
                 fill
                 className="object-contain"
@@ -154,7 +154,7 @@ const Success = ({ products }: Props) => {
                       <div className="flex relative items-center justify-center w-16 h-16 border border-gray-300 bg-[#F1F1F1] text-xs text-white rounded-md">
                         <div className="relative rounded-md h-7 w-7">
                           <Image
-                            src="https://rb.gy/vsvv2o"
+                            src="/apple_logo.webp"
                             alt="Apple Logo"
                             fill
                             className="object-contain"
