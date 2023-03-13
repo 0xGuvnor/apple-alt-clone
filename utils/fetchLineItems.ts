@@ -5,11 +5,6 @@ export const fetchLineItems = async (sessionId: string) => {
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/getSession?session_id=${sessionId}`
   );
 
-  // await fetch(
-  //   `${process.env.NEXT_PUBLIC_BASE_URL}/api/getSession?session_id=${sessionId}`
-  // );
-
-  // const data = await res.json();
   const data = res.data;
   const products = data.session.data;
 
