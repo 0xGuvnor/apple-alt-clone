@@ -12,6 +12,7 @@
     "@reduxjs/toolkit": "^1.9.1",
     "@sanity/image-url": "^1.0.1",
     "@stripe/stripe-js": "^1.46.0",
+    "axios": "^1.3.4",
     "framer-motion": "^7.10.2",
     "next": "latest",
     "next-auth": "^4.18.6",
