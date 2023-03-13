@@ -96,13 +96,9 @@ const Home: NextPage<Props> = ({ categories, products }) => {
 export default Home;
 
 export const getServerSideProps: GetServerSideProps<Props> = async (ctx) => {
-  try {
-    const categories = await fetchCategories();
-    const products = await fetchProducts();
-    const session = await getSession(ctx);
+  const categories = await fetchCategories();
+  const products = await fetchProducts();
+  const session = await getSession(ctx);
 
-    return { props: { categories, products, session } };
-  } catch (error) {
-    return { props: { error } };
-  }
+  return { props: { categories, products, session } };
 };
